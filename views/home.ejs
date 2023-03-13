@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            background-image: url(/image/auth-bg.png);
+        }
+        h1{
+            color: white;
+        }
+        a{
+            color: white;
+            border: 1px solid black;
+            padding: .5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: .5rem;
+            display: inline-block;
+            font-size: 20px;
+            font-weight: 500;
+            background-color: #3795BD;
+            box-shadow: inset 0px 0px 15px 3px rgb(48 48 176);
+
+        }
+        a:hover{
+            box-shadow:  0px 0px 15px 2px rgb(48 48 176);
+        }
+    </style>
+</head>
+<body>
+    <h1>welcome to home page
+        <%=name%></h1> <a style="position: absolute; top:1rem; right: 1rem;" href="/get/logout">Logout</a>
+    
+    <div>
+   
+    <a href="/htmlfile/calculator.html" target="_blank">calculator</a>
+    <a href="/htmlfile/TickTack.html" target="_blank">TickTack</a>
+    <a href="/htmlfile/ColorCube.html" target="_blank">ColorCube</a>
+    <a  href="http://localhost:8081/" id="createDropdown" target="_blank">createDropdown</a>
+    <a href="http://localhost:8082/" id="dynamicTable" target="_blank">Dynamic table</a>
+    <a href="http://localhost:8083/" id="jobApplication" target="_blank">job Application</a>
+    <a href="http://localhost:8084/get" id="pagination" target="_blank">pagination</a>
+    <a href="http://localhost:8085/get/search" target="_blank">search</a>
+    <a href="http://localhost:8086/get/orderBy" target="_blank">sorting</a>
+    </div>
+
+</body>
+
+
+
+</html>

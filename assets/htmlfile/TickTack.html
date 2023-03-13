@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        body{
+          background-color: #293462;
+         
+        }     
+        table{
+          
+            background-color: #31E1F7;
+            border-collapse: collapse;
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            opacity: 0.9;
+            
+        }
+        td{
+            height: 130px;
+            width: 130px;
+            border: 3px solid #00FFC6 ;
+            font-size: 35px;
+            text-align: center;
+        }
+        p{
+          color: chartreuse;
+          font-size: xx-large;
+          
+        }
+    </style>
+
+    
+
+  </head>
+  <body>
+    <p >X = <span id="nisargcountOfX"></span> </p>
+    <p >Y =  <span id="nisargcountOfY"></span></p>
+    <p id="p"></p>
+    <table>
+     
+      <tr>
+        <td onclick="handelOnclick(this.title, this.id)" title="0" id="1"> </td>
+        <td onclick="handelOnclick(this.title, this.id)" title="0" id="2"> </td>
+        <td onclick="handelOnclick(this.title, this.id)" title="0" id="3"> </td>
+      </tr>
+      <tr>
+        <td onclick="handelOnclick(this.title, this.id)" title="0" id="4"> </td>
+        <td onclick="handelOnclick(this.title, this.id)" title="0" id="5"> </td>
+        <td onclick="handelOnclick(this.title, this.id)" title="0" id="6"> </td>
+      </tr>
+      <tr>
+        <td onclick="handelOnclick(this.title, this.id)" title="0" id="7"> </td>
+        <td onclick="handelOnclick(this.title, this.id)" title="0" id="8"> </td>
+        <td onclick="handelOnclick(this.title, this.id)" title="0" id="9"> </td>
+      </tr>
+    </table>
+    
+    
+
+  </body> 
+
+  <script>
+ 
+    var nisargcurrent="X" 
+    var nisargisDraw=0;
+    var nisargcountOfX=0;
+    var nisargcountOfY=0;
+    var nisargwinposition=[
+        [1,2,3],
+        [4,5,6],
+        [7,8,9],
+        [1,4,7],
+        [2,5,8],
+        [3,6,9],
+        [1,5,9],
+        [3,5,7],
+        
+        ]
+    
+    function handelOnclick(v,id)
+    {
+      let cell=document.getElementById(id);
+      let message = document.getElementById("p")
+      
+      if(cell.title=="X"||cell.title=="O"){
+        return;
+      }
+      
+
+        if(nisargcurrent=="X")
+        {
+            
+            cell.innerText="X";
+            cell.title="X"
+
+            for(let v of nisargwinposition)
+            {
+                    if(document.getElementById(v[0]).title=="X"&&document.getElementById(v[1]).title=="X"&&document.getElementById(v[2]).title=="X")
+                    {
+                      document.getElementById(v[0]).style.background="#82CD47";
+                      document.getElementById(v[1]).style.background="#82CD47";
+                      document.getElementById(v[2]).style.background="#82CD47";
+                        console.log(" X win")
+                        message.innerText="X is win"
+                        nisargcountOfX++;
+                        document.getElementById("nisargcountOfX").innerText=nisargcountOfX;
+                        setTimeout(reset,2000);
+                        nisargisDraw--;
+                    }
+            }
+
+            nisargisDraw++;
+            if(nisargisDraw==9)
+            {
+            message.innerText="Draw!!"
+            nisargisDraw=0;
+            setTimeout(reset,2000)
+            }
+            nisargcurrent="O"
+
+        }
+        else
+        {
+            let cell=document.getElementById(id);
+            cell.innerText="O";
+            cell.title="O"
+
+            for(let v of nisargwinposition)
+            {
+                    if(document.getElementById(v[0]).title=="O"&&document.getElementById(v[1]).title=="O"&&document.getElementById(v[2]).title=="O")
+                    {
+
+                      document.getElementById(v[0]).style.background="#82CD47";
+                      document.getElementById(v[1]).style.background="#82CD47";
+                      document.getElementById(v[2]).style.background="#82CD47";
+                        console.log(" Y win")
+                        message.innerText="Y is Win"
+                        nisargcountOfY++;
+                        document.getElementById("nisargcountOfY").innerText=nisargcountOfY;  
+                        setTimeout(reset,2000)
+                        nisargisDraw--;
+                        
+                    }
+            }
+            nisargisDraw++;
+            if(nisargisDraw==9){
+              message.innerText="Draw!!"
+              nisargisDraw=0;
+              setTimeout(reset,2000)
+            }
+            nisargcurrent="X"
+        }
+
+        function reset()
+        {
+          let td= document.getElementsByTagName("td");
+          for(var i=0;i<td.length;i++)
+          {
+            td[i].innerText="";
+            td[i].title="0"
+            td[i].style.background="#31E1F7"
+            nisargisDraw=0;
+          }
+        }
+    }
+
+
+
+  </script>
+</html>

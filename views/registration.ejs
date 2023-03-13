@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style/style.css" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="container">
+            <div class="row">
+                <div class="col col_3">
+                    <div class="box">
+
+                        <form  onsubmit="return validation()" name="RegistrationForm" action="/post/Registration" method="post" >
+
+                            <img src="/image/logo.svg" alt="">
+
+
+                            <div class="inputDiv">
+                                <label for="">welcome Back!</label>
+                            </div>
+
+                            <div class="inputDiv">
+                                <label>Name: </label>
+                                <input type="text" name="username" id="username" placeholder="Username" />
+                                <span id="userNameError"></span>
+                            </div>
+
+                            <div class="inputDiv">
+                                <label>Email:</label>
+                                <input type="email" name="email" id="email" placeholder="Email" onchange="checkUser()"/>
+                                <span id="emaiError"></span>
+                            </div>
+
+                            <div class="inputDiv">
+                                <label>Password:</label>
+                                <input type="password" name="password" id="password" placeholder="Password" />
+                                <span id="passwordError"></span>
+                            </div>
+
+                            <div class="inputDiv">
+                                <label>confirm password:</label>
+                                <input type="text" name="confirmPassword" id="confirmPassword" placeholder="confirmPassword" />
+                                <span id="confirmPasswordError"></span>
+
+                            </div>
+
+                            <div class="inputDiv ">
+                                <input class="greenBtn"  type="submit" id="submitbtn" value="Registration" disabled>
+                            </div>
+
+                        </form>
+
+                        <div class="buttomLink">
+                            <p>Already have account <span><a href="/get/login">login Here</a></span></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="buttomLogo">
+                <img src="/image/bottom-logo.png" alt="">
+            </div>
+        </div>
+</body>
+
+<script>
+
+     function checkUser()
+    {
+        let submitbtn=document.getElementById('submitbtn');
+        let email = document.getElementById("email").value;
+        let emaiError = document.getElementById("emaiError");
+        fetch('/get/user')
+        .then(data=>data.json())
+        .then((data)=>{
+            if(data.includes(email))
+            {
+                console.log("Email")
+                emaiError.innerText="Email is already exists";
+                submitbtn.disabled=true;
+                return false;       
+            }
+            else{
+                emaiError.innerText="";
+                submitbtn.disabled=false;
+                
+            }
+        })
+    }
+
+    function validation(){
+
+        let username = document.getElementById("username").value;
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+        let confirmPassword = document.getElementById("confirmPassword").value;
+
+        let userNameError = document.getElementById("userNameError");
+        let passwordError = document.getElementById("passwordError");
+        let confirmPasswordError = document.getElementById("confirmPasswordError");
+        let emaiError = document.getElementById("emaiError");
+
+        
+
+        if(username =="")
+        {
+            userNameError.innerText="plese enter user name";
+            return false;
+        }
+        else{
+            userNameError.innerText="";
+        }
+
+        if(email == "")
+        {
+            emaiError.innerText="plese enter email"
+            return false;
+        }
+        else{
+            emaiError.innerText="";
+        }
+
+        if(password == "")
+        {
+            passwordError.innerText="plese enter password";
+            return false;
+        }
+        else{
+            passwordError.innerText="";
+        }
+
+        if(confirmPassword=="")
+        {
+            confirmPasswordError.innerText="plese enter confirmPassword"
+            return false;
+        }
+        else{
+            confirmPasswordError.innerText="";
+        }
+
+        if(confirmPassword !== password)
+        {
+            confirmPasswordError.innerText="confirmPassword is not same as password";
+            return false;
+        }
+        else{
+            confirmPassword.innerText="";
+        }
+        
+        if(!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/gm.test(password))
+        {
+            passwordError.innerText="Enter Srong Password"
+            return false;
+        }
+        else{
+            passwordError.innerText="";
+        }
+
+        return true;;
+
+    }
+
+</script>
+</html>

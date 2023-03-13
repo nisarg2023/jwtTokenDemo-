@@ -1,0 +1,79 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+body{
+    background-image: url('/image/auth-bg.png');
+}
+.container{
+    width: 1170px;
+    margin: 0 auto;
+    padding: 0 16px
+}
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -16px;
+}
+
+.col{
+    padding: 0 16px;
+}
+.col_3{
+    width: calc(100%/3);
+    
+}
+.box{
+    background-color: black;
+    opacity: 0.9;
+    padding: 3rem; 
+    height: 100vh;
+    color: white;
+    
+    
+}
+label{
+    display: block;
+    font-size: 18px;
+    padding-bottom: 0.2rem;
+}
+input{
+    width: 100%;
+    font-size: 14px;
+    padding: 5px;
+    background-color: white;
+    border: 1px solid black;
+    opacity: 1;
+}
+.inputDiv{
+    padding: 0.8rem  0rem ;
+}
+.inputDiv span{
+    color: red;
+}
+.greenBtn {
+    background-color: #174F2A;
+    color: white;
+    font-size: 16px;
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #174F2A;
+    text-decoration: none;
+}
+.buttomLogo{
+display: flex;
+justify-content: flex-end;
+margin-top: -58px;
+}
+.buttomLink{
+    position: absolute;
+    bottom: 2rem;
+    
+}
+a{
+color: #A4843F;
+
+}

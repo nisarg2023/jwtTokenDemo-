@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: black;
+      }
+      table {
+        background-color: aqua;
+        border-collapse: collapse;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+       height: 600px;
+        width: 600px;
+        
+      }
+      td {
+        border: 2px solid rgb(235, 227, 227);
+        
+        height: 50px;
+        width: 50px;
+      }
+      p {
+        color: chartreuse;
+        display: flex;
+        margin: auto;
+        font-size: xx-large;
+        background-color: rgba(255, 255, 255, 0.2);
+        width: 45px;
+        border-radius: 30%;
+        justify-content: space-around;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="p">60</p>
+    <p></p>
+    <table id="table">
+      <tr>
+        <td onclick="handelOnclick(this.id) " id="1"></td>
+        <td onclick="handelOnclick(this.id) " id="2"></td>
+        <td onclick="handelOnclick(this.id) " id="3"></td>
+      </tr>
+      <tr>
+        <td onclick="handelOnclick(this.id) " id="4"></td>
+        <td onclick="handelOnclick(this.id) " id="5"></td>
+        <td onclick="handelOnclick(this.id) " id="6"></td>
+      </tr>
+      <tr>
+        <td onclick="handelOnclick(this.id) " id="7"></td>
+        <td onclick="handelOnclick(this.id) " id="8"></td>
+        <td onclick="handelOnclick(this.id) " id="9"></td>
+      </tr>
+    </table>
+
+    <script>
+      var nisarg_count = 4;
+      var nisarg_random;
+      let nisarg_opacity = 0.9;
+      var p = document.getElementById("p");
+      var nisarg_second = 60;
+      var nisarg_score = 0;
+      
+      var interval= setInterval(() => {
+        if (nisarg_second > 0) {
+          nisarg_second -= 1;
+          p.innerText = nisarg_second;
+        } else {
+          console.log(nisarg_score);
+          clearInterval(interval)
+        }
+      }, 1000);
+      
+
+      function handelOnclick() {
+        var s = "";
+
+        var nisarg_countOfid = 1;
+        for (let i = 0; i < nisarg_count; i++) {
+          s += "<tr>";
+          for (let j = 0; j < nisarg_count; j++) {
+            s += `<td id=${nisarg_countOfid++}></td>`;
+          }
+          s += "</tr>";
+        }
+
+        nisarg_random = parseInt(Math.random() * (nisarg_count * nisarg_count));
+        var table = document.getElementById("table");
+        table.innerHTML = s;
+        var newCell = document.getElementById(nisarg_random);
+        newCell.addEventListener("click", handelOnclick);
+        let nisarg_R = parseInt(Math.random() * 255);
+        let nisarg_G = parseInt(Math.random() * 255);
+        let nisarg_B = parseInt(Math.random() * 255);
+
+        table.style.background = `rgb(${nisarg_R},${nisarg_G},${nisarg_B})`;
+
+        newCell.style.background = `rgba(${50},${50},${50},${nisarg_opacity})`;
+        nisarg_score++;
+
+        if (nisarg_count <= 10) {
+          nisarg_count++;
+          nisarg_opacity -= 0.1;
+        }
+      }
+    </script>
+  </body>
+</html>
